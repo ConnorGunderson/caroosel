@@ -1,0 +1,22 @@
+.widgetContainer {
+  @apply flex flex-col w-44
+}
+
+.inputContainer {
+  @apply flex flex-row justify-around items-center
+}
+
+.h3 {
+  @apply 
+  w-1/4
+  pr-1 
+  text-xs 
+  text-center 
+  select-none
+}
+
+.speakerIcons {
+  @apply
+  w-4 h-4
+  text-cloud-4
+}

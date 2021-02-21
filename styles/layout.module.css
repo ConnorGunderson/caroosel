@@ -1,0 +1,119 @@
+.page {
+  @apply 
+    bg-cover
+    w-full 
+    min-h-screen
+}
+
+.header {
+  min-height:15vh;
+  @apply 
+    flex
+    flex-col
+    sm:flex-row
+    w-full 
+    p-8 
+    select-none 
+}
+
+.brand {
+  @apply
+    flex flex-row
+    justify-center
+    md:justify-start
+    items-end
+    text-center
+    text-5xl 
+    m-auto 
+    cursor-pointer 
+    transition-all 
+    text-cloud-4
+    hover:text-cloud-2
+}
+
+.nav {
+  @apply
+    justify-center
+    flex flex-row 
+    m-auto
+}
+
+.navLi {
+  @apply 
+    p-2 
+    h-full 
+    my-auto 
+    list-none
+    text-2xl
+    text-cloud-4
+    hover:text-cloud-2
+    text-center 
+    cursor-pointer
+    transition-all ease-linear 
+}
+
+.navCred {
+  @apply 
+    text-center 
+    sm:absolute 
+    top-0 
+    right-0 p-2 
+    text-cloud-4
+}
+
+.navName {
+  @apply p-2
+}
+
+.auth {
+  @apply 
+    bg-white 
+    shadow-sm 
+    hover:shadow-md 
+    transition-shadow 
+    p-2 
+    duration-150 
+    rounded-md
+}
+
+.main {
+  min-height: 85vh;
+  @apply 
+    relative 
+    flex 
+    flex-col 
+    w-full
+    md:w-3/4
+    p-4 
+    mx-auto 
+}
+
+.footer {
+  @apply 
+  flex flex-col justify-center items-center
+  text-cloud-4
+  p-4
+}
+
+.copyRight {
+  @apply
+    text-xs
+}
+
+.hop {
+  animation: hop 1.5s ease-in-out infinite;
+}
+
+@keyframes hop {
+  0% {
+    transform: translateY(0px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+

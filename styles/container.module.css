@@ -1,0 +1,5 @@
+.containerDefaults {
+  @apply
+    grid
+    justify-items-center 
+}
