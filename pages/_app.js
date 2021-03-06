@@ -1,17 +1,17 @@
-import '../styles/globals.css'
-import '../styles/tailwind.css'
-import { Auth0Provider} from '@auth0/auth0-react'
+import '../styles/globals.css';
+import '../styles/tailwind.css';
+import { NextSeo } from 'next-seo';
 
-function MyApp({ Component, pageProps}) {
+import SEO from '../next-seo.config';
+import { AuthProvider } from '@/lib/auth';
+
+function MyApp({ Component, pageProps }) {
   return (
-    <Auth0Provider
-      domain={"dev-cpphr8b5.us.auth0.com"}
-      clientId={"xF0bk6ihbe3XNNQzntQfnRoQ0oLmiT9L"}
-      redirectUri={encodeURI("https://mi-472-project01.vercel.app/")}
-    >
-      <Component {...pageProps} />
-    </Auth0Provider>
-  )
+      <AuthProvider>
+        <NextSeo {...SEO} />
+        <Component {...pageProps} />
+      </AuthProvider>
+  );
 }
 
-export default MyApp
+export default MyApp;

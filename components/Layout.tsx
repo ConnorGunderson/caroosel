@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import styles from '../styles/layout.module.css'
 import { PropsWithChildren, useState } from 'react'
-import { useAuth0 } from '@auth0/auth0-react' 
+import { useAuth } from '@/lib/auth'
 
 const navLinks = [
   {
@@ -18,22 +18,22 @@ const navLinks = [
 ]
 
 const Login = () => {
-  const { loginWithRedirect } = useAuth0()
+  const {signInWithGoogle} = useAuth()
   return(
-    <button aria-label="login" className={styles.auth} onClick={() => loginWithRedirect()}>
+    <button aria-label="login" className={styles.auth} onClick={() => signInWithGoogle()}>
       Login
     </button>
   )
 }
 
 const Logout = ({name} : {name: string}) => {
-  const { logout } = useAuth0()
+  const { signout } = useAuth()
   return(
     <>
       <span className={styles.navName}>
         {name}
       </span>
-      <button aria-label="logout" className={styles.auth} onClick={() => logout()}>
+      <button aria-label="logout" className={styles.auth} onClick={() => signout()}>
         Logout
       </button>
     </>
@@ -41,7 +41,7 @@ const Logout = ({name} : {name: string}) => {
 }
 
 export default function Layout(props: PropsWithChildren<any>) {
-  const { user, isAuthenticated} = useAuth0()
+  const { user } = useAuth()
   const [hop, setHop] = useState(false)
   return (
     <div className={styles.page} style={{backgroundImage: "url(/images/background-02.webp)"}}>
@@ -63,7 +63,7 @@ export default function Layout(props: PropsWithChildren<any>) {
         </nav>
         <div className={styles.navCred}>
             {
-              user && isAuthenticated ? <Logout name={user.name}/> : <Login />
+              user ? <Logout name={user.name}/> : <Login />
             }
         </div>
       </header>
