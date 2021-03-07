@@ -1,101 +1,129 @@
-import { useRef, useEffect, useState} from 'react'
-import styles from '../styles/audio-widget.module.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClock, faVolumeDown, faVolumeMute, faVolumeOff, faVolumeUp } from '@fortawesome/free-solid-svg-icons'
-import loadMedia from './utils/load-media'
+import { useRef, useEffect, useState } from 'react';
+import styles from '../styles/audio-widget.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faClock,
+  faVolumeDown,
+  faVolumeMute,
+  faVolumeOff,
+  faVolumeUp
+} from '@fortawesome/free-solid-svg-icons';
+import { useMedia } from '@/utils/media';
 
 interface AudioProps {
-  loop: boolean,
-  setAudioLoaded: any,
-  audUrl: string,
-  active: boolean,
-  loaded: boolean
+  audioURL: string;
 }
 
-export default function AudioWidget({loop, setAudioLoaded , audUrl = "/audio/ghibli2.mp3", active, loaded} : AudioProps) {
-  const [volume, setVolume] = useState(.25)
-  const [songTime, setSongTime] = useState(0)
-  const audio = useRef<HTMLAudioElement>(null)
+export default function AudioWidget() {
+  const [volume, setVolume] = useState(0.2);
+  const { active, loading, setAudioLoaded, audRef, songTime, setSongTime, audio, loop, audioURL } = useMedia();
 
   useEffect(() => {
-    loadMedia(audUrl, 'a')
-    .then(() => setAudioLoaded(true))
-    .then(() => {
-      audio.current.src = audUrl
-      setSongTime(audio.current.currentTime)
-    })
-    .catch(e => console.log('audio error', e))
-  }, [audUrl])
-
-  useEffect(() => {
-    if (audio.current) {
-      audio.current.volume = volume
+    if (audio) {
+      audio.volume = volume;
     }
-  }, [volume])
+  }, [volume]);
+
+  
+  useEffect(() => {
+    if (!loading) {
+      if (active) {
+        audio.play()
+      } else {
+        audio.pause()
+      }
+    }
+  }, [active])
 
   useEffect(() => {
-    if (active && loaded) {
-      audio.current.play()
-    } else if (loaded && !active) {
-      audio.current.pause()
+    if (audioURL && audio) {
+      audio.load()
+      audio.volume = volume
+      setSongTime(audio.currentTime)
     }
-  }, [active, loaded])
+  }, [audioURL])
 
-  const playbackChange = (e:any) => {
-    audio.current.currentTime = songTime
-    audio.current.play()
-  }
+  const playbackChange = (e: any) => {
+    audio.currentTime = songTime;
+    audio.play();
+  };
 
-  const changeCapture = (e:any) => {
-    setSongTime(e.target.value)
-    audio.current.currentTime = e.target.value
-  }
+  const changeCapture = (e: any) => {
+    setSongTime(e.target.value);
+    audio.currentTime = e.target.value;
+  };
 
   return (
-    <div className={styles.widgetContainer} >
-      <audio loop={loop} ref={audio} onTimeUpdate={() => {setSongTime(audio.current.currentTime)}} />
+    <div className={styles.widgetContainer}>
+        <audio
+        loop={loop}
+        onCanPlay={() => setAudioLoaded(true)}
+        ref={audRef}
+        src={audioURL}
+        onTimeUpdate={() => {
+          setSongTime(audio.currentTime);
+        }}
+      />
       <div className={styles.inputContainer}>
-        <h3 className={styles.h3}>
-          {
-            Math.floor(volume*100)*2
+        <h3 className={styles.h3}>{Math.floor(volume * 100)}</h3>
+        <FontAwesomeIcon
+          aria-label="volume"
+          className={styles.speakerIcons}
+          icon={
+            !active
+              ? faVolumeMute
+              : volume > 0.25
+              ? faVolumeUp
+              : volume > 0
+              ? faVolumeDown
+              : faVolumeOff
           }
-        </h3>
-        <FontAwesomeIcon aria-label="volume" className={styles.speakerIcons} icon={!active ? faVolumeMute : volume > .25 ? faVolumeUp : volume > 0 ? faVolumeDown : faVolumeOff } />
+        />
         <input
           aria-label="volume"
-          type='range' 
-          value={volume} 
-          min={0} 
-          max={.5} 
-          step={.005} 
-          onChange={(e: React.ChangeEvent<any>) => setVolume(e.target.value)} >
-        </input>
+          type="range"
+          value={volume}
+          min={0}
+          max={1}
+          step={0.01}
+          onChange={(e: React.ChangeEvent<any>) => setVolume(e.target.value)}
+        ></input>
       </div>
       <div className={styles.inputContainer}>
-        <h3 className={styles.h3}>
-          {
-            ((Math.floor(Math.floor(songTime)/60) > 60 
-              ? Math.floor(Math.floor(Math.floor(songTime)/60)/60) + ":" + (Math.floor(Math.floor(songTime)/60)%60 > 10 ? Math.floor(Math.floor(songTime)/60)%60 : "0" + Math.floor(Math.floor(songTime)/60)%60)
-              : Math.floor(Math.floor(songTime)/60))
-              + ":" 
-              + (Math.floor(songTime) % 60 < 10 
-                ? "0" + Math.floor(songTime) % 60 
-                : Math.floor(songTime) % 60))
-          }
-        </h3>
+        <h3 className={styles.h3}>{formatTime(songTime)}</h3>
         <FontAwesomeIcon className={styles.speakerIcons} icon={faClock} />
-        <input 
+        <input
           aria-label="playback time"
-          type="range" 
-          value={loaded && audio.current ? songTime : 0}
+          type="range"
+          value={!loading && audio ? songTime : 0}
           min={0}
-          max={loaded && audio.current ? audio.current.duration : 1}
-          onMouseDown={() => loaded ? audio.current.pause() : null}
-          onMouseUp={(e: React.MouseEvent) => loaded && active ? playbackChange(e) : null}
-          onChangeCapture={(e: React.ChangeEvent<any>) => loaded ? changeCapture(e) : null}
+          max={!loading && audio ? audio.duration : 1}
+          onMouseDown={() => (!loading ? audio.pause() : null)}
+          onMouseUp={(e: React.MouseEvent) =>
+            !loading && active ? playbackChange(e) : null
+          }
+          onChangeCapture={(e: React.ChangeEvent<any>) =>
+            !loading ? changeCapture(e) : null
+          }
           readOnly
         />
       </div>
     </div>
-  )
+  );
 }
+
+const formatTime = (songTime) => {
+  return (
+    (Math.floor(Math.floor(songTime) / 60) > 60
+      ? Math.floor(Math.floor(Math.floor(songTime) / 60) / 60) +
+        ':' +
+        (Math.floor(Math.floor(songTime) / 60) % 60 > 10
+          ? Math.floor(Math.floor(songTime) / 60) % 60
+          : '0' + (Math.floor(Math.floor(songTime) / 60) % 60))
+      : Math.floor(Math.floor(songTime) / 60)) +
+    ':' +
+    (Math.floor(songTime) % 60 < 10
+      ? '0' + (Math.floor(songTime) % 60)
+      : Math.floor(songTime) % 60)
+  );
+};

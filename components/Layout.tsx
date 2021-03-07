@@ -1,21 +1,9 @@
 import 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import Image from 'next/image'
 import styles from '../styles/layout.module.css'
 import { PropsWithChildren, useState } from 'react'
 import { useAuth } from '@/lib/auth'
-
-const navLinks = [
-  {
-    title: "Explore",
-    href: "/explore"
-  },
-  {
-    title: "Settings",
-    href: "/settings"
-  }
-]
 
 const Login = () => {
   const {signInWithGoogle} = useAuth()
@@ -26,8 +14,9 @@ const Login = () => {
   )
 }
 
-const Logout = ({name} : {name: string}) => {
-  const { signout } = useAuth()
+const Logout = () => {
+  const {user: {name}, signout} = useAuth()
+
   return(
     <>
       <span className={styles.navName}>
@@ -40,7 +29,7 @@ const Logout = ({name} : {name: string}) => {
   )
 }
 
-export default function Layout(props: PropsWithChildren<any>) {
+export default function Layout({children}) {
   const { user } = useAuth()
   const [hop, setHop] = useState(false)
   return (
@@ -63,11 +52,11 @@ export default function Layout(props: PropsWithChildren<any>) {
         </nav>
         <div className={styles.navCred}>
             {
-              user ? <Logout name={user.name}/> : <Login />
+              user ? <Logout /> : <Login />
             }
         </div>
       </header>
-      <main className={styles.main}>{props.children}</main>
+      <main className={styles.main}>{children}</main>
       <footer className={styles.footer}>
         <div>
           App created by Connor Gunderson

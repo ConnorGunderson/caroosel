@@ -2,30 +2,23 @@ import React, { useState, useEffect } from "react";
 import styles from '../../styles/card.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons'
+import { useMedia } from "@/utils/media";
 
-interface CardSettingsProps {
-  imgUrl: string,  
-  setImgUrl: Function,
-  setAudUrl: Function,
-  setLoaded: Function,
-  setAudioLoaded: Function,
-}
-
-
-
-export default function CardSettings({setAudUrl, setAudioLoaded, setLoaded, setImgUrl} : CardSettingsProps) {
+export default function CardSettings() {
   const [selectedFile, setSelectedFile] = useState(null)
   const [imageUrl, setImageUrl] = useState(null)
+  const {setAudio, setImage, setActive} = useMedia()
 
   const formSubmit = (e : any) => {
     e.preventDefault()
+    console.log(imageUrl)
     if (imageUrl) {
-      setImgUrl(imageUrl)
+      setImage(imageUrl)
     }
     if (selectedFile) {
-      setAudUrl(URL.createObjectURL(selectedFile))
-      setAudioLoaded(false)
-      setLoaded(false)
+      setActive(false)
+      const audio = URL.createObjectURL(selectedFile);
+      setAudio(audio)
     }
     setSelectedFile(null)
   }

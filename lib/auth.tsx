@@ -64,7 +64,8 @@ const formatUser = (user : any) => {
     email: email,
     token: xa,
     photoURL: photoURL,
-    provider: providerId
+    provider: providerId,
+    media: []
   };
 };
 
