@@ -46,11 +46,10 @@ export default function AudioWidget() {
 
   useEffect(() => {
     if (audioURL && audio) {
-      audio.load();
       audio.volume = volume;
       setSongTime(audio.currentTime);
     }
-  }, [audioURL]);
+  }, [audioURL, audio]);
 
   const playbackChange = (e: any) => {
     audio.currentTime = songTime;
@@ -65,10 +64,11 @@ export default function AudioWidget() {
   return (
     <div className={styles.widgetContainer}>
       <audio
+        preload="auto"
         loop={loop}
         onCanPlay={() => setAudioLoaded(true)}
         ref={audRef}
-        src={audioURL}
+        src={audioURL} 
         onTimeUpdate={() => {
           setSongTime(audio.currentTime);
         }}

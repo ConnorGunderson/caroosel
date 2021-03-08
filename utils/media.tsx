@@ -86,6 +86,7 @@ export const useProviderMedia = () => {
   const setImage = (imageURI: string) => {
     setLoading(true)
     dispatch({type: "IMAGE", payload: imageURI});
+
   };
 
   const setName = (name: string) => {
