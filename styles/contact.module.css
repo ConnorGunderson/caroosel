@@ -2,7 +2,7 @@
   background-color: rgba(0, 68, 170, 0.8);
   border-radius: 10px;
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, .15);
-  @apply md: w-4/5 w-full py-32 flex flex-col text-white m-auto justify-center items-center text-left
+  @apply md:w-4/5 w-full py-32 flex flex-col text-white m-auto justify-center items-center text-left
 }
 
 .formHeader {
