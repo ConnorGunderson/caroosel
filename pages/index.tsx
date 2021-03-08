@@ -1,6 +1,5 @@
 import { Card, Layout, Container  } from '@/components/index';
 import { MediaProvider } from '@/utils/media';
-import { useCards } from '@/utils/cards';
 import { useEffect } from 'react';
 
 
