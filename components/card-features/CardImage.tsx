@@ -5,13 +5,7 @@ import { useMedia } from '@/utils/media';
 import { useEffect, useRef } from 'react';
 
 export default function CardImage() {
-  const {
-    active,
-    setActive,
-    imageURL,
-    setImageLoaded,
-    loading
-  } = useMedia();
+  const { active, setActive, imageURL, setImageLoaded, loading } = useMedia();
 
   const imageRef = useRef(null);
 

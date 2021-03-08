@@ -1,5 +1,3 @@
 .containerDefaults {
-  @apply
-    grid
-    justify-items-center 
+  @apply grid justify-items-center
 }

@@ -1,54 +1,21 @@
-
 .container {
-  @apply
-  relative
-  flex
-  flex-col
-  justify-evenly
-  duration-300
+  @apply relative flex flex-col justify-evenly duration-300
 }
 
 .cardHeaderContainer {
-  @apply
-    flex
-    flex-col
-    m-2 my-4
+  @apply flex flex-col m-2 my-4
 }
 
 .cardImageContainer {
-  @apply
-  w-40 h-40
-  relative
-  mx-auto
-  rounded-full 
-  shadow-lg
-  cursor-pointer 
-  mb-4 
-  select-none 
-  duration-300
-  border-4 border-white
-  ring-1 ring-cloud-4
-  overflow-hidden
+  @apply w-40 h-40 relative mx-auto rounded-full shadow-lg cursor-pointer mb-4 select-none duration-300 border-4 border-white ring-1 ring-cloud-4 overflow-hidden
 }
 
 .cardImage {
-  @apply
-    transition-opacity
-    object-cover
-    h-full
-    w-full
+  @apply transition-opacity object-cover h-full w-full
 }
 
 .imageInput {
-  @apply 
-    p-1 
-    m-2 
-    w-24 
-    text-sm 
-    rounded 
-    transition-all 
-    border-2
-    focus:border-cloud-4
+  @apply p-1 m-2 w-24 text-sm rounded transition-all border-2 focus: border-cloud-4
 }
 
 .imageInput:focus {
@@ -56,47 +23,16 @@
 }
 
 .cardLoading {
-  @apply
-    w-32 h-32 
-    mx-auto mb-4 
-    rounded-full 
-    shadow-lg 
-    cursor-wait 
-    select-none 
-    border-4 border-cloud-4 
+  @apply w-32 h-32 mx-auto mb-4 rounded-full shadow-lg cursor-wait select-none border-4 border-cloud-4
 }
 
 .cardSettings {
-  @apply 
-    flex flex-col justify-around 
-    p-2 
-    mx-auto 
-    relative
-    mb-4 
-    overflow-hidden 
-    bg-white 
-    rounded 
-    shadow-lg 
-    select-none
-    w-40 h-40
+  @apply flex flex-col justify-around p-2 mx-auto relative mb-4 overflow-hidden bg-white rounded shadow-lg select-none w-40 h-40
 }
 
 .audioFileLabel {
   padding: 2px;
-  @apply
-  flex 
-  w-28 
-  text-sm
-  flex-row 
-  items-center 
-  mx-2 mt-1 
-  cursor-pointer 
-  justify-evenly 
-  text-white 
-  bg-cloud-4 
-  transition-all
-  duration-200
-  hover:bg-cloud-3
+  @apply flex w-28 text-sm flex-row items-center mx-2 mt-1 cursor-pointer justify-evenly text-white bg-cloud-4 transition-all duration-200 hover: bg-cloud-3
 }
 
 .input[type="file"] {
@@ -104,48 +40,23 @@
 }
 
 .cardSettingsHeader {
-  @apply
-    flex flex-col 
-    mx-auto 
-    text-xs 
-    text-center 
-    relative 
-    overflow-hidden
+  @apply flex flex-col mx-auto text-xs text-center relative overflow-hidden
 }
 
 .barContainer {
-  @apply
-    flex
-    flex-row
-    justify-between mb-2
-    p-1
-    py-2
+  @apply flex flex-row justify-between mb-2 p-1 py-2
 }
 
 .faContainer {
-  @apply 
-    flex flex-col justify-between select-none
+  @apply flex flex-col justify-between select-none
 }
 
 .faBars {
-  @apply h-6 w-6 
-    text-cloud-4 
-    hover:text-cloud-2 
-    transition-colors 
-    duration-300 
-    cursor-pointer
-    pb-1
+  @apply h-6 w-6 text-cloud-4 hover: text-cloud-2 transition-colors duration-300 cursor-pointer pb-1
 }
 
 .faLoop {
-  @apply 
-    h-6 
-    w-6 
-    hover:text-cloud-2 
-    transition-colors 
-    duration-300 
-    cursor-pointer
-    pb-1
+  @apply h-6 w-6 hover: text-cloud-2 transition-colors duration-300 cursor-pointer pb-1
 }
 
 .active {
@@ -158,21 +69,22 @@
 }
 
 .playPause {
-  top:56.5px;
-  left:56.5px;
+  top: 56.5px;
+  left: 56.5px;
   height: 40px;
   width: 40px;
-  @apply
-    absolute
+  @apply absolute
 }
 
 @keyframes borderBreathe {
   0% {
     border-color: rgba(0, 0, 0, .8);
   }
+
   50% {
     border-color: rgba(0, 0, 0, .2);
   }
+
   100% {
     border-color: rgba(0, 0, 0, .8);
   }

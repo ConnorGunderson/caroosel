@@ -33,10 +33,7 @@ export default function Home() {
           {cardContent.map((item, index) => {
             return (
               <MediaProvider key={index}>
-                <Card
-                  imageURL={item.imageURL}
-                  audioURL={item.audioURL}
-                />
+                <Card imageURL={item.imageURL} audioURL={item.audioURL} />
               </MediaProvider>
             );
           })}

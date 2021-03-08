@@ -12,14 +12,14 @@ interface CardProps {
   imageURL: string;
 }
 
-export default function Card({imageURL, audioURL}) {
-  const [viewSettings, setViewSettings] = useState(false)
-  const {setImage, setLoop, loop, setAudio} = useMedia()
+export default function Card({ imageURL, audioURL }) {
+  const [viewSettings, setViewSettings] = useState(false);
+  const { setImage, setLoop, loop, setAudio } = useMedia();
 
   useEffect(() => {
-    setImage(imageURL)
-    setAudio(audioURL)
-  }, [])
+    setImage(imageURL);
+    setAudio(audioURL);
+  }, []);
 
   return (
     <section className={`${styles.container}`} draggable="false">
@@ -51,14 +51,10 @@ export default function Card({imageURL, audioURL}) {
           </div>
         </div>
         <div onDragStart={(e) => e.preventDefault()}>
-          {!viewSettings ? (
-            <CardImage/>
-          ) : (
-            <CardSettings/>
-          )}
+          {!viewSettings ? <CardImage /> : <CardSettings />}
         </div>
       </div>
-      <AudioWidget/>
+      <AudioWidget />
     </section>
   );
 }

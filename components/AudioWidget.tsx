@@ -16,7 +16,17 @@ interface AudioProps {
 
 export default function AudioWidget() {
   const [volume, setVolume] = useState(0.2);
-  const { active, loading, setAudioLoaded, audRef, songTime, setSongTime, audio, loop, audioURL } = useMedia();
+  const {
+    active,
+    loading,
+    setAudioLoaded,
+    audRef,
+    songTime,
+    setSongTime,
+    audio,
+    loop,
+    audioURL
+  } = useMedia();
 
   useEffect(() => {
     if (audio) {
@@ -24,24 +34,23 @@ export default function AudioWidget() {
     }
   }, [volume]);
 
-  
   useEffect(() => {
     if (!loading) {
       if (active) {
-        audio.play()
+        audio.play();
       } else {
-        audio.pause()
+        audio.pause();
       }
     }
-  }, [active])
+  }, [active]);
 
   useEffect(() => {
     if (audioURL && audio) {
-      audio.load()
-      audio.volume = volume
-      setSongTime(audio.currentTime)
+      audio.load();
+      audio.volume = volume;
+      setSongTime(audio.currentTime);
     }
-  }, [audioURL])
+  }, [audioURL]);
 
   const playbackChange = (e: any) => {
     audio.currentTime = songTime;
@@ -55,7 +64,7 @@ export default function AudioWidget() {
 
   return (
     <div className={styles.widgetContainer}>
-        <audio
+      <audio
         loop={loop}
         onCanPlay={() => setAudioLoaded(true)}
         ref={audRef}

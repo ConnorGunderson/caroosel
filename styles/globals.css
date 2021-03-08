@@ -11,6 +11,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -20,8 +24,5 @@ input[type="range"] {
   height: 6px;
   user-select: none;
   border-radius: 8px;
-  @apply 
-  bg-cloud-4 
-  my-2
-  w-2/4
+  @apply bg-cloud-4 my-2 w-2/4
 }
