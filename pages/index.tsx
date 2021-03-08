@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <div>
       <Layout>
-        <Container gridSize={cards.length}>
+        <Container gridSize={defaultMedia.length}>
           {cards.map((card , index) => {
             return (
               <MediaProvider key={index}>
@@ -31,3 +31,21 @@ export default function Home() {
     </div>
   );
 }
+
+const defaultMedia = [
+  {
+    name: 'cappadocia',
+    audioURL: '/audio/cappadocia.mp3',
+    imageURL: '/images/hot-air-balloon.png'
+  },
+  {
+    name: 'river',
+    audioURL: '/audio/river.mp3',
+    imageURL: '/images/river.png'
+  },
+  {
+    name: 'rain',
+    audioURL: '/audio/rain.mp3',
+    imageURL: '/images/rain.png'
+  }
+];
