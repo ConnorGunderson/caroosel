@@ -1,5 +1,5 @@
-import { useRef, useEffect, useState } from 'react';
-import styles from '../styles/audio-widget.module.css';
+import { useEffect, useState } from 'react';
+import styles from '@/styles/audio-widget.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faClock,

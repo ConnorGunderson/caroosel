@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
-import styles from '../styles/card.module.css';
+import styles from '@/styles/card.module.css';
 import AudioWidget from './AudioWidget';
 import CardImage from './card-features/CardImage';
 import CardSettings from './card-features/CardSettings';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faRedo } from '@fortawesome/free-solid-svg-icons';
-import { MediaProvider, useMedia } from '@/utils/media';
+import { useMedia } from '@/utils/media';
 
 interface CardProps {
   audioURL: string;
   imageURL: string;
 }
 
-export default function Card({ imageURL, audioURL }) {
+export default function Card({ imageURL, audioURL } : CardProps) {
   const [viewSettings, setViewSettings] = useState(false);
   const { setImage, setLoop, loop, setAudio } = useMedia();
 

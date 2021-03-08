@@ -1,6 +1,6 @@
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styles from '../../styles/card.module.css';
+import styles from '@/styles/card.module.css';
 import { useMedia } from '@/utils/media';
 import { useEffect, useRef } from 'react';
 

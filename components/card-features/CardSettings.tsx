@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../../styles/card.module.css';
+import styles from '@/styles/card.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
 import { useMedia } from '@/utils/media';

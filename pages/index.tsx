@@ -1,8 +1,8 @@
 import { useAuth } from '@/lib/auth';
 import React, { useEffect, useState } from 'react';
-import useSWR from 'swr';
 
-import { Card, Layout, Container } from '../components/index';
+import { Card, Layout, Container  } from '@/components/index';
+import { } from "@/components/Container"
 import fetcher from '@/utils/fetcher';
 import { MediaProvider } from '@/utils/media';
 
@@ -42,8 +42,6 @@ export default function Home() {
     </div>
   );
 }
-
-let cardContent;
 
 const defaultMedia = [
   {

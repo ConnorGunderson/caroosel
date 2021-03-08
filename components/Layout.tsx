@@ -1,7 +1,8 @@
 import 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../styles/layout.module.css';
+import Image from 'next/image';
+import styles from '@/styles/layout.module.css';
 import { useState } from 'react';
 import { useAuth } from '@/lib/auth';
 
@@ -61,10 +62,7 @@ export default function Layout({ children }) {
               onMouseLeave={() => setHop(false)}
             >
               CaRoosel
-              <img
-                src="/images/roo.svg"
-                className={`${hop ? styles.hop : ''} w-16 h-16`}
-              />
+              <span className={`${hop ? styles.hop : ''} w-16 h-16`} ><Image height={75} width={75} src="/images/roo.svg"/></span>
             </h1>
           </a>
         </Link>
