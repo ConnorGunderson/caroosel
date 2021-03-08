@@ -29,7 +29,6 @@ export default function CardImage() {
         ) : null}
         <img
           aria-label="play"
-          alt="card image"
           src={imageURL}
           ref={imageRef}
           height={250}

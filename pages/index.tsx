@@ -47,16 +47,16 @@ const defaultMedia = [
   {
     name: 'foo',
     audioURL: '/audio/grand-duel.mp3',
-    imageURL: '/images/gbu.jpg'
+    imageURL: '/images/gbu.jpeg'
   },
   {
     name: 'foo',
     audioURL: '/audio/undertale.mp3',
-    imageURL: '/images/undertale.jpg'
+    imageURL: '/images/undertale.jpeg'
   },
   {
     name: 'foo',
     audioURL: '/audio/pokemon.mp3',
-    imageURL: '/images/pokemon.webp'
+    imageURL: '/images/pokemon.png'
   }
 ];
