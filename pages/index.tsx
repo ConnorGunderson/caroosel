@@ -1,39 +1,28 @@
-import { useAuth } from '@/lib/auth';
-import React, { useEffect, useState } from 'react';
-
 import { Card, Layout, Container  } from '@/components/index';
-import { } from "@/components/Container"
-import fetcher from '@/utils/fetcher';
 import { MediaProvider } from '@/utils/media';
+import { useCards } from '@/utils/cards';
+import { useEffect } from 'react';
 
-const getCardContent = async (user) => {
-  return await fetcher(`/api/user/${user.uid}`);
-};
+
 
 export default function Home() {
-  const { user, loading } = useAuth();
-  const [cardContent, setCardContent] = useState(defaultMedia);
+  const {cards, getCards, cardLoading} = useCards()
 
   useEffect(() => {
-    if (user && !loading) {
-      getCardContent(user)
-        .then((d: any) => {
-          if (d.length) {
-            setCardContent(d);
-          }
-        })
-        .catch((e) => console.log(e));
-    }
-  }, [user]);
+    // getCards().then((audio) => {
+    //   audio.load()
+    //   audio.play()
+    // })
+  }, [])
 
   return (
     <div>
       <Layout>
-        <Container gridSize={cardContent.length}>
-          {cardContent.map((item, index) => {
+        <Container gridSize={cards.length}>
+          {cards.map((card , index) => {
             return (
               <MediaProvider key={index}>
-                <Card imageURL={item.imageURL} audioURL={item.audioURL} />
+                <Card name={card.name} imageURL={card.imageURL} audioURL={card.audioURL} />
               </MediaProvider>
             );
           })}
@@ -42,21 +31,3 @@ export default function Home() {
     </div>
   );
 }
-
-const defaultMedia = [
-  {
-    name: 'foo',
-    audioURL: '/audio/grand-duel.mp3',
-    imageURL: '/images/gbu.jpeg'
-  },
-  {
-    name: 'foo',
-    audioURL: '/audio/undertale.mp3',
-    imageURL: '/images/undertale.jpeg'
-  },
-  {
-    name: 'foo',
-    audioURL: '/audio/pokemon.mp3',
-    imageURL: '/images/pokemon.png'
-  }
-];

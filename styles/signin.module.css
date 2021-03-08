@@ -1,0 +1,64 @@
+.body {
+  @apply
+    absolute flex justify-center items-center bg-blue-500 h-full w-full
+}
+
+.container {
+  box-shadow: 0 0 5px 5px rgba(255,255,255,.2);
+  border-radius: 10px;
+  height: 600px;
+  @apply
+    flex flex-col
+    justify-center items-center
+    sm:w-3/5
+    lg:w-2/5
+    w-full
+    bg-white
+}
+
+.brand {
+  @apply
+  select-none
+    pb-8
+    flex flex-row 
+    justify-center
+    items-end
+    text-center
+    text-5xl 
+    transition-all 
+    text-cloud-4
+    hover:text-cloud-2
+}
+
+.signIn {
+  @apply
+    text-xl text-center
+}
+
+.authBody {
+  @apply
+    pt-5
+}
+
+.google {
+  border-radius: 10px;
+  @apply
+    flex items-center border border-blue-400 p-1 hover:bg-blue-400 transition-all hover:text-white
+}
+
+
+.hop {
+  animation: hop 1.5s ease-in-out infinite;
+}
+
+@keyframes hop {
+  0% {
+    transform: translateY(0px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}

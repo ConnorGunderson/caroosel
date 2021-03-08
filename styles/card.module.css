@@ -19,24 +19,50 @@
   @apply
   w-40 h-40
   relative
-  mx-auto
-  rounded-full 
   shadow-lg
   cursor-pointer 
   mb-4 
   select-none 
   duration-300
+  rounded-full
   border-4 border-white
-  ring-1 ring-cloud-4
   overflow-hidden
 }
 
 .cardImage {
+  height: 200px;
+  left:-25px;
+  bottom:-25px;
+  width: 200px;
   @apply
     transition-opacity
+    absolute
+    border
+}
+.cardImage img {
+  @apply
     object-cover
-    h-full
-    w-full
+    h-full w-full
+}
+
+.cardImage:empty {
+  content: "";
+  border: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: linear-gradient(to right,  transparent 0%, rgba(0,0,0,.2) 50%, transparent 100%);
+  background-repeat: no-repeat;
+  animation: load 1.5s ease-out infinite;
+} 
+
+@keyframes load {
+  from {
+    background-position: -250px 0;
+  }
+  to {
+    background-position: 250px 0;
+  }
 }
 
 .imageInput {
@@ -123,13 +149,15 @@
 }
 
 .faContainer {
+  flex:1;
   @apply 
     flex flex-col justify-between select-none
 }
 
-.faBars {
-  @apply h-6 w-6 
-    text-cloud-4 
+.faLoop {
+  @apply 
+    text-2xl
+    self-start
     hover:text-cloud-2 
     transition-colors 
     duration-300 
@@ -137,10 +165,9 @@
     pb-1
 }
 
-.faLoop {
+.faSettings {
   @apply 
-    h-6 
-    w-6 
+    text-2xl
     hover:text-cloud-2 
     transition-colors 
     duration-300 
@@ -158,10 +185,8 @@
 }
 
 .playPause {
-  top:56.5px;
-  left:56.5px;
-  height: 40px;
-  width: 40px;
+  top:52px;
+  left:52px;
   @apply
     absolute
 }

@@ -3,13 +3,22 @@
 }
 
 .inputContainer {
-  @apply flex flex-row justify-around items-center
+  @apply flex flex-row justify-around items-center 
+}
+
+.input {
+  flex:1
+  @apply 
 }
 
 .h3 {
-  @apply w-1/4 pr-1 text-xs text-center select-none
+  @apply w-6 h-full pr-1 text-xs text-center select-none  flex justify-center items-center
+}
+
+.iconContainer {
+  @apply  w-8  text-center
 }
 
 .speakerIcons {
-  @apply w-4 h-4 text-cloud-4
+  @apply text-cloud-4
 }

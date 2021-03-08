@@ -75,20 +75,23 @@ export default function AudioWidget() {
       />
       <div className={styles.inputContainer}>
         <h3 className={styles.h3}>{Math.floor(volume * 100)}</h3>
-        <FontAwesomeIcon
-          aria-label="volume"
-          className={styles.speakerIcons}
-          icon={
-            !active
-              ? faVolumeMute
-              : volume > 0.25
-              ? faVolumeUp
-              : volume > 0
-              ? faVolumeDown
-              : faVolumeOff
-          }
-        />
+        <div className={styles.iconContainer}>
+          <FontAwesomeIcon
+            aria-label="volume"
+            className={styles.speakerIcons}
+            icon={
+              !active
+                ? faVolumeMute
+                : volume > 0.25
+                ? faVolumeUp
+                : volume > 0
+                ? faVolumeDown
+                : faVolumeOff
+            }
+          />
+        </div>
         <input
+        className={styles.input}
           aria-label="volume"
           type="range"
           value={volume}
@@ -100,8 +103,11 @@ export default function AudioWidget() {
       </div>
       <div className={styles.inputContainer}>
         <h3 className={styles.h3}>{formatTime(songTime)}</h3>
+        <div className={styles.iconContainer}>
         <FontAwesomeIcon className={styles.speakerIcons} icon={faClock} />
+        </div>
         <input
+        className={styles.input}
           aria-label="playback time"
           type="range"
           value={!loading && audio ? songTime : 0}

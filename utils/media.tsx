@@ -7,8 +7,10 @@ import React, {
   useState
 } from 'react';
 
-import { firestore } from '@/lib/firebase';
+import firebase from '@/lib/firebase';
 import { useAuth } from '@/lib/auth';
+
+const firestore = firebase.firestore()
 
 const MediaContext = createContext(null);
 
@@ -94,10 +96,11 @@ export const useProviderMedia = () => {
 
   const saveCard = async () => {
     if (user) {
-      return firestore()
+      return firestore
         .collection('users')
         .doc(user.uid)
-        .set({ media: [state] }, { merge: true });
+        .set({ media: [state] }, { merge: true })
+        .then(snapshot => console.log(snapshot))
     } else {
       return null;
     }
@@ -108,7 +111,6 @@ export const useProviderMedia = () => {
   };
 
   const setImageLoaded = (bool: boolean) => {
-    console.log(bool)
     return dispatch({ type: 'IMAGE_LOADED', payload: bool });
   };
 
@@ -136,6 +138,7 @@ export const useProviderMedia = () => {
     songTime,
     imageLoad,
     audioLoad,
+    saveCard,
     setName,
     setActive,
     setAudio,

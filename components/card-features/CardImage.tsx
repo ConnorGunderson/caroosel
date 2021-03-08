@@ -3,9 +3,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from '@/styles/card.module.css';
 import { useMedia } from '@/utils/media';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 export default function CardImage() {
-  const { active, setActive, imageURL, setImageLoaded, loading } = useMedia();
+  const {
+    active,
+    setActive,
+    imageURL,
+    name,
+    setImageLoaded,
+    loading
+  } = useMedia();
 
   const imageRef = useRef(null);
 
@@ -25,18 +33,19 @@ export default function CardImage() {
     >
       <>
         {!active ? (
-          <FontAwesomeIcon className={styles.playPause} icon={faPlayCircle} />
+          <FontAwesomeIcon
+            size="3x"
+            className={styles.playPause}
+            icon={faPlayCircle}
+          />
         ) : null}
-        <img
-          aria-label="play"
-          src={imageURL}
-          ref={imageRef}
-          height={250}
-          width={250}
+        <a
           className={`${styles.cardImage} ${
             active ? 'opacity-100' : 'opacity-50'
           }`}
-        />
+        >
+          <img aria-label="play" src={imageURL} ref={imageRef} />
+        </a>
       </>
     </div>
   );

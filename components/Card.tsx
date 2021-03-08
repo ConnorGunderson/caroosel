@@ -4,19 +4,21 @@ import AudioWidget from './AudioWidget';
 import CardImage from './card-features/CardImage';
 import CardSettings from './card-features/CardSettings';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faRedo } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faRedo, faCloudUploadAlt, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { useMedia } from '@/utils/media';
 
 interface CardProps {
+  name: string;
   audioURL: string;
   imageURL: string;
 }
 
-export default function Card({ imageURL, audioURL } : CardProps) {
+export default function Card({ name, imageURL, audioURL } : CardProps) {
   const [viewSettings, setViewSettings] = useState(false);
-  const { setImage, setLoop, loop, setAudio } = useMedia();
-
+  const { setImage, setAudio, setName, setLoop, loop, saveCard } = useMedia();
+  
   useEffect(() => {
+    setName(name)
     setImage(imageURL);
     setAudio(audioURL);
   }, []);
@@ -40,11 +42,20 @@ export default function Card({ imageURL, audioURL } : CardProps) {
               Loop
             </span>
           </div>
+          {/* <div className={`${styles.faContainer} items-center`}>
+            <FontAwesomeIcon
+              aria-label="settings"
+              onClick={() => saveCard()}
+              className={styles.fa}
+              icon={faCloudUploadAlt}
+            />
+            <span className={`text-cloud-4 text-xs`}>Save</span>
+          </div> */}
           <div className={`${styles.faContainer} items-end`}>
             <FontAwesomeIcon
               aria-label="settings"
               onClick={() => setViewSettings(!viewSettings)}
-              className={styles.faBars}
+              className={styles.faSettings}
               icon={faBars}
             />
             <span className={`text-cloud-4 text-xs`}>Settings</span>

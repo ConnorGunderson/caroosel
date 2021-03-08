@@ -10,5 +10,12 @@ export default {
   _HOST: {
     development: 'http://localhost:3000',
     production: 'https://caroosel.vercel.app'
+  },
+  _ADMIN: {
+    cert: {
+      client_email: process.env.FIREBASE_CLIENT_EMAIL,
+      private_key: process.env.FIREBASE_PRIVATE_KEY,
+      project_id: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    }
   }
 };

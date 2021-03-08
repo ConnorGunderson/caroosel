@@ -3,21 +3,9 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/styles/layout.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/auth';
-
-const Login = () => {
-  const { signInWithGoogle } = useAuth();
-  return (
-    <button
-      aria-label="login"
-      className={styles.auth}
-      onClick={() => signInWithGoogle()}
-    >
-      Login
-    </button>
-  );
-};
+import { useRouter } from 'next/router';
 
 const Logout = () => {
   const {
@@ -27,7 +15,7 @@ const Logout = () => {
 
   return (
     <>
-      <span className={styles.navName}>{name}</span>
+      <span className={styles.navName}>{name} </span>
       <button
         aria-label="logout"
         className={styles.auth}
@@ -40,8 +28,18 @@ const Logout = () => {
 };
 
 export default function Layout({ children }) {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  const router = useRouter();
   const [hop, setHop] = useState(false);
+
+  useEffect(() => {
+    if (!user && !loading) {
+      router.push('/signin');
+    }
+  }, [user]);
+
+  if (loading) return <div></div>;
+
   return (
     <div
       className={styles.page}
@@ -80,7 +78,7 @@ export default function Layout({ children }) {
             </a>
           </Link>
         </nav>
-        <a className={styles.navCred}>{user ? <Logout /> : <Login />}</a>
+        <a className={styles.navCred}>{user ? <Logout /> : ''}</a>
       </header>
       <main className={styles.main}>{children}</main>
       <footer aria-label="copyright" className={styles.footer}>

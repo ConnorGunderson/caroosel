@@ -19,6 +19,7 @@ a:hover {
   box-sizing: border-box;
 }
 
+
 input[type="range"] {
   -webkit-appearance: none;
   height: 6px;

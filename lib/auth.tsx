@@ -1,5 +1,9 @@
+import "firebase/auth"
+import "firebase/firestore"
 import { createContext, useContext, useEffect, useState } from 'react';
-import { auth, firestore } from './firebase';
+import firebase from './firebase';
+
+const {firestore, auth} = firebase
 
 let AuthContext = createContext(null);
 
@@ -13,7 +17,7 @@ export const useAuth = () => {
 };
 
 export const useProviderAuth = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
   const handleUser = (rawUser: object | boolean) => {
@@ -41,6 +45,7 @@ export const useProviderAuth = () => {
     await auth().signOut();
     return handleUser(false);
   };
+
   useEffect(() => {
     setLoading(true);
     const unsubscribe = auth().onAuthStateChanged(handleUser);

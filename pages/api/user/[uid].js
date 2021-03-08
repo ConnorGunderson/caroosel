@@ -1,9 +1,11 @@
-import { firestore } from '@/lib/firebase';
+import firebase from '@/lib/firebase';
+
+const firestore = firebase.firestore()
 
 export default async (req, res) => {
   try {
     const { uid } = req.query;
-    const docRef = firestore().collection('users').doc(uid);
+    const docRef = firestore.collection('users').doc(uid);
 
     const snapshot = await docRef.get().then((doc) => {
       if (doc.exists) {
@@ -12,7 +14,9 @@ export default async (req, res) => {
         res.status(304).end(null);
       }
     });
+
     const { media } = snapshot;
+    
     if (!media.length) {
       res.status(304).end(null);
     } else {
