@@ -5,11 +5,11 @@ const description = 'Flexible audio mixing app';
 const SEO = {
   title,
   description,
-  canonical: null,
+  canonical: "caroosel.vercel.app",
   openGraph: {
     type: 'website',
     locale: 'en_IE',
-    url: null,
+    url: "https:/caroosel.vercel.app",
     title,
     description
   }
