@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 
 
 export default function Home() {
-  const {cards, getCards, cardLoading} = useCards()
 
   useEffect(() => {
     // getCards().then((audio) => {
@@ -18,7 +17,7 @@ export default function Home() {
     <div>
       <Layout>
         <Container gridSize={defaultMedia.length}>
-          {cards.map((card , index) => {
+          {defaultMedia.map((card , index) => {
             return (
               <MediaProvider key={index}>
                 <Card name={card.name} imageURL={card.imageURL} audioURL={card.audioURL} />
