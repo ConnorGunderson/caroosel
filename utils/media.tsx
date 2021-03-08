@@ -21,23 +21,24 @@ interface payloadProps {
 
 const initialState = {
   name: null,
-  imageURL: null,
-  audioURL: null,
+  active: false,
   imageLoad: false,
   audioLoad: false,
-  loop: false
+  loop: false,
+  imageURL: null,
+  audioURL: null
 };
 
 const reducer = (state: any, action: payloadProps) => {
   switch (action.type) {
     case 'ACTIVE':
       return { ...state, active: action.payload };
-    case 'IMAGE_URI':
-      return { ...state, imageURL: action.payload };
-    case 'AUDIO_URI':
-      return { ...state, audioURL: action.payload };
     case 'NAME':
       return { ...state, name: action.payload };
+    case 'IMAGE':
+      return { ...state, imageURL: action.payload };
+    case 'AUDIO':
+      return { ...state, audioURL: action.payload };
     case 'LOOP':
       return { ...state, loop: !state.loop };
     case 'AUDIO_LOADED':
@@ -62,7 +63,6 @@ export const useMedia = () => {
 
 export const useProviderMedia = () => {
   const { user } = useAuth();
-
   const [state, dispatch] = useReducer(reducer, initialState);
   const [loading, setLoading] = useState(true);
   const [songTime, setSongTime] = useState(0);
@@ -79,11 +79,13 @@ export const useProviderMedia = () => {
   } = state;
 
   const setAudio = async (audioURI: string) => {
-    dispatch({ type: 'AUDIO_URI', payload: audioURI });
+    setLoading(true)
+    dispatch({type: "AUDIO", payload: audioURI});
   };
 
   const setImage = (imageURI: string) => {
-    dispatch({ type: 'IMAGE_URI', payload: imageURI });
+    setLoading(true)
+    dispatch({type: "IMAGE", payload: imageURI});
   };
 
   const setName = (name: string) => {
@@ -119,12 +121,11 @@ export const useProviderMedia = () => {
   };
 
   useEffect(() => {
-    if (audioLoad && imageLoad) {
-      return setLoading(false);
-    } else {
-      return setLoading(true);
+    if (loading && audioLoad && imageLoad) {
+      console.log(active)
+      setLoading(false)
     }
-  }, [imageLoad, audioLoad]);
+  }, [audioLoad, imageLoad])
 
   return {
     name,

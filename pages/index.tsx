@@ -1,11 +1,11 @@
 import { Card, Layout, Container  } from '@/components/index';
 import { MediaProvider } from '@/utils/media';
 import { useEffect } from 'react';
-
+import { useCards } from '@/utils/cards'
 
 
 export default function Home() {
-
+  const { cards } = useCards()
   useEffect(() => {
     // getCards().then((audio) => {
     //   audio.load()
@@ -16,8 +16,8 @@ export default function Home() {
   return (
     <div>
       <Layout>
-        <Container gridSize={defaultMedia.length}>
-          {defaultMedia.map((card , index) => {
+        <Container gridSize={cards.length}>
+          {cards.map((card , index) => {
             return (
               <MediaProvider key={index}>
                 <Card name={card.name} imageURL={card.imageURL} audioURL={card.audioURL} />
@@ -30,20 +30,4 @@ export default function Home() {
   );
 }
 
-const defaultMedia = [
-  {
-    name: 'cappadocia',
-    audioURL: '/audio/cappadocia.mp3',
-    imageURL: '/images/hot-air-balloon.png'
-  },
-  {
-    name: 'river',
-    audioURL: '/audio/river.mp3',
-    imageURL: '/images/river.png'
-  },
-  {
-    name: 'rain',
-    audioURL: '/audio/rain.mp3',
-    imageURL: '/images/rain.png'
-  }
-];
+

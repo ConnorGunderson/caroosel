@@ -3,14 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from '@/styles/card.module.css';
 import { useMedia } from '@/utils/media';
 import { useEffect, useRef } from 'react';
-import Image from 'next/image';
 
 export default function CardImage() {
   const {
+    name,
     active,
     setActive,
     imageURL,
-    name,
     setImageLoaded,
     loading
   } = useMedia();
@@ -44,7 +43,7 @@ export default function CardImage() {
             active ? 'opacity-100' : 'opacity-50'
           }`}
         >
-          <img aria-label="play" src={imageURL} ref={imageRef} />
+          <img alt={name} aria-label="play" src={imageURL} ref={imageRef} />
         </a>
       </>
     </div>

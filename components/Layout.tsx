@@ -36,9 +36,9 @@ export default function Layout({ children }) {
     if (!user && !loading) {
       router.push('/signin');
     }
-  }, [user]);
+  }, [user, loading]);
 
-  if (loading) return <div></div>;
+  if (loading) return <LoadingPage />;
 
   return (
     <div
@@ -91,4 +91,25 @@ export default function Layout({ children }) {
       </footer>
     </div>
   );
+}
+
+
+const LoadingPage = () => {
+  const [hop, setHop] = useState(false);
+  return (
+    <div className="flex flex-col justify-center items-center bg-blue-400 h-screen">
+      <div className="">
+      <h1
+              aria-label="caroosel"
+              className={`${styles.brand} ${styles.hop}`}
+              style={{color: "white"}}
+            >
+              CaRoosel
+              <span className={`${hop ? styles.hop : ''} w-16 h-16`}>
+                <Image height={75} width={75} src="/images/roo.svg" />
+              </span>
+            </h1>
+      </div>
+    </div>
+  )
 }
