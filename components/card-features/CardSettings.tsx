@@ -11,7 +11,6 @@ export default function CardSettings() {
 
   const formSubmit = (e: any) => {
     e.preventDefault();
-    console.log(imageUrl);
     if (imageUrl) {
       setImage(imageUrl);
     }

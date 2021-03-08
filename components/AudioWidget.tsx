@@ -46,6 +46,7 @@ export default function AudioWidget() {
 
   useEffect(() => {
     if (audioURL && audio) {
+      audio.load()
       audio.volume = volume;
       setSongTime(audio.currentTime);
     }

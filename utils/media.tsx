@@ -81,20 +81,25 @@ export const useProviderMedia = () => {
   const setAudio = async (audioURI: string) => {
     setLoading(true)
     dispatch({type: "AUDIO", payload: audioURI});
+    if (imageLoad) {
+      return setLoading(false)
+    }
   };
 
   const setImage = (imageURI: string) => {
     setLoading(true)
     dispatch({type: "IMAGE", payload: imageURI});
-
+    if (audioLoad) {
+      return setLoading(false)
+    }
   };
 
   const setName = (name: string) => {
-    dispatch({ type: 'NAME', payload: name });
+    return dispatch({ type: 'NAME', payload: name });
   };
 
   const setActive = (bool: boolean) => {
-    dispatch({ type: 'ACTIVE', payload: bool });
+    return dispatch({ type: 'ACTIVE', payload: bool });
   };
 
   const saveCard = async () => {
@@ -123,7 +128,6 @@ export const useProviderMedia = () => {
 
   useEffect(() => {
     if (loading && audioLoad && imageLoad) {
-      console.log(active)
       setLoading(false)
     }
   }, [audioLoad, imageLoad])
