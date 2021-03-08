@@ -24,20 +24,34 @@ const ContactPage = () => {
   return (
     <Layout>
       <form className={styles.form} onSubmit={sendEmail}>
-        <h2 className={styles.formHeader}>Email Connor</h2>
+        <h2 aria-label="send email to owner" className={styles.formHeader}>
+          Email Connor
+        </h2>
         <div className={styles.formGroup}>
           <label htmlFor="sender">Your Name:</label>
-          <input placeholder="name" name="sender"></input>
+          <input
+            aria-label="name"
+            placeholder="name"
+            name="sender"
+            required
+          ></input>
         </div>
         <div className={styles.formGroup}>
           <label htmlFor="subject">Subject:</label>
-          <input placeholder="subject" name="subject"></input>
+          <input
+            aria-label="subject"
+            placeholder="subject"
+            name="subject"
+            required
+          ></input>
         </div>
         <div className={styles.formGroup}>
           <label htmlFor="message">Message:</label>
           <textarea
+            aria-label="message"
             placeholder="type message here..."
             name="message"
+            required
           ></textarea>
         </div>
         <button type="submit" className={styles.send}>

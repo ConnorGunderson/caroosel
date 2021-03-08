@@ -62,22 +62,28 @@ export default function Layout({ children }) {
               onMouseLeave={() => setHop(false)}
             >
               CaRoosel
-              <span className={`${hop ? styles.hop : ''} w-16 h-16`} ><Image height={75} width={75} src="/images/roo.svg"/></span>
+              <span className={`${hop ? styles.hop : ''} w-16 h-16`}>
+                <Image height={75} width={75} src="/images/roo.svg" />
+              </span>
             </h1>
           </a>
         </Link>
         <nav className={styles.nav} aria-label="Navigation Bar">
           <Link href="/about">
-            <a className={styles.navLink}>About</a>
+            <a aria-label="about page" className={styles.navLink}>
+              About
+            </a>
           </Link>
           <Link href="/contact">
-            <a className={styles.navLink}>Contact</a>
+            <a aria-label="contact page" className={styles.navLink}>
+              Contact
+            </a>
           </Link>
         </nav>
         <a className={styles.navCred}>{user ? <Logout /> : <Login />}</a>
       </header>
       <main className={styles.main}>{children}</main>
-      <footer className={styles.footer}>
+      <footer aria-label="copyright" className={styles.footer}>
         <div>App created by Connor Gunderson</div>
         <div>Free for All, Free Forever</div>
         <span className={styles.copyRight}>
