@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from '@/styles/card.module.css';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import { useMedia } from '@/utils/media';
@@ -31,7 +31,7 @@ export default function CardSettings() {
         id="cardSettingsForm"
         onSubmit={(e) => formSubmit(e)}
       >
-        <div className="flex flex-col justify-center">
+        <button className="flex flex-col justify-center">
           <label
             aria-label="upload audio file"
             className={styles.audioFileLabel}
@@ -39,7 +39,7 @@ export default function CardSettings() {
           >
             <FaCloudUploadAlt
               className={`${
-                selectedFile ? 'text-cloud-2 animate-pulse' : 'text-white'
+                selectedFile ? 'animate-pulse' : ""
               } w-6 h-6 transition-all`}
             />
             <span>
@@ -56,7 +56,7 @@ export default function CardSettings() {
             onChange={(e) => setSelectedFile(e.target.files[0])}
             className={styles.input}
           />
-        </div>
+        </button>
         <input
           aria-label="working image url"
           placeholder="Image Url"
@@ -68,7 +68,7 @@ export default function CardSettings() {
         <button
           aria-label="submit new media content"
           type="submit"
-          className="p-1 text-white transition-all rounded-sm hover:bg-cloud-3 bg-cloud-4"
+          className="p-1 transition-all rounded-sm border border-cloud-4 hover:bg-white bg-cloud-4 hover:text-cloud-4 text-white"
           form="cardSettingsForm"
         >
           Submit

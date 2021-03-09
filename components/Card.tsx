@@ -28,14 +28,16 @@ export default function Card({ name, imageURL, audioURL } : CardProps) {
       <div className={styles.cardHeaderContainer}>
         <div className={styles.barContainer}>
           <div className={`${styles.faContainer} items-start`}>
-            <ImLoop2
-              aria-label="loop"
-              size="1.25em"
-              onClick={() => setLoop(!loop)}
-              className={`${styles.fa} ${
-                loop ? 'text-cloud-2 animate-pulse' : ""
-              }`}
-            />
+            <button aria-label="loop">
+              <ImLoop2
+                
+                size="1.25em"
+                onClick={() => setLoop(!loop)}
+                className={`${styles.fa} ${
+                  loop ? 'text-cloud-2 animate-pulse' : ""
+                }`}
+              />
+            </button>
             <span
               className={`${loop ? 'text-cloud-2 ' : ""} text-xs`}
             >
@@ -43,12 +45,13 @@ export default function Card({ name, imageURL, audioURL } : CardProps) {
             </span>
           </div>
           <div className={`${styles.faContainer} items-end`}>
-            <FaBars
-              aria-label="settings"
-              size="1.25em"
-              onClick={() => setViewSettings(!viewSettings)}
-              className={`${styles.fa}`}
-            />
+            <button aria-label="settings">
+              <FaBars
+                size="1.25em"
+                onClick={() => setViewSettings(!viewSettings)}
+                className={`${styles.fa}`}
+              />
+            </button>
             <span className={`text-xs`}>Settings</span>
           </div>
         </div>

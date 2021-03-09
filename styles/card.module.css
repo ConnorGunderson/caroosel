@@ -110,7 +110,10 @@
 .audioFileLabel {
   padding: 2px;
   @apply
-  flex 
+  flex
+  hover:text-cloud-4 text-white 
+  border border-cloud-4 rounded-sm
+  hover:bg-white bg-cloud-4
   w-28 
   text-sm
   flex-row 
@@ -118,11 +121,8 @@
   mx-2 mt-1 
   cursor-pointer 
   justify-evenly 
-  text-white 
-  bg-cloud-4 
   transition-all
   duration-200
-  hover:bg-cloud-3
 }
 
 .input[type="file"] {
