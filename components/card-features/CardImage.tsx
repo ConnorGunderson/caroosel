@@ -1,8 +1,7 @@
-import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from '@/styles/card.module.css';
 import { useMedia } from '@/utils/media';
 import { useEffect, useRef } from 'react';
+import {FaPlayCircle} from 'react-icons/fa'
 
 export default function CardImage() {
   const {
@@ -32,10 +31,9 @@ export default function CardImage() {
     >
       <>
         {!active ? (
-          <FontAwesomeIcon
-            size="3x"
+          <FaPlayCircle
+            size="3em"
             className={styles.playPause}
-            icon={faPlayCircle}
           />
         ) : null}
         <a

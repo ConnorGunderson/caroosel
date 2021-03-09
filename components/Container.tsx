@@ -1,6 +1,6 @@
 import styles from '@/styles/container.module.css';
 
-export function Container({ gridSize, children }: any) {
+export default function Container({ gridSize, children }: any) {
   const n = gridSize;
   return (
     <div

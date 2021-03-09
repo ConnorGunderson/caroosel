@@ -1,18 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from '@/styles/audio-widget.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faClock,
-  faVolumeDown,
-  faVolumeMute,
-  faVolumeOff,
-  faVolumeUp
-} from '@fortawesome/free-solid-svg-icons';
+import { FaVolumeDown, FaVolumeMute, FaVolumeOff, FaVolumeUp, FaClock} from 'react-icons/fa'
 import { useMedia } from '@/utils/media';
-
-interface AudioProps {
-  audioURL: string;
-}
 
 export default function AudioWidget() {
   const [volume, setVolume] = useState(0.2);
@@ -46,7 +35,7 @@ export default function AudioWidget() {
 
   useEffect(() => {
     if (audioURL && audio) {
-      audio.load()
+      audio.load();
       audio.volume = volume;
       setSongTime(audio.currentTime);
     }
@@ -69,30 +58,23 @@ export default function AudioWidget() {
         loop={loop}
         onCanPlay={() => setAudioLoaded(true)}
         ref={audRef}
-        src={audioURL} 
+        src={audioURL}
         onTimeUpdate={() => {
           setSongTime(audio.currentTime);
         }}
       />
       <div className={styles.inputContainer}>
         <h3 className={styles.h3}>{Math.floor(volume * 100)}</h3>
-        <div className={styles.iconContainer}>
-          <FontAwesomeIcon
-            aria-label="volume"
-            className={styles.speakerIcons}
-            icon={
-              !active
-                ? faVolumeMute
-                : volume > 0.25
-                ? faVolumeUp
-                : volume > 0
-                ? faVolumeDown
-                : faVolumeOff
-            }
-          />
+        <div aria-label="volume" className={styles.iconContainer}>
+          {
+            !active ? <FaVolumeMute size="1.1em"/>
+            : volume > .25 ? <FaVolumeUp size="1.1em"/>
+            : volume > 0 ? <FaVolumeDown size="1.1em"/>
+            : <FaVolumeOff size="1.1em"/>
+          }
         </div>
         <input
-        className={styles.input}
+          className={styles.input}
           aria-label="volume"
           type="range"
           value={volume}
@@ -105,10 +87,10 @@ export default function AudioWidget() {
       <div className={styles.inputContainer}>
         <h3 className={styles.h3}>{formatTime(songTime)}</h3>
         <div className={styles.iconContainer}>
-        <FontAwesomeIcon className={styles.speakerIcons} icon={faClock} />
+          <FaClock className={styles.speakerIcons} size="1.1em" />
         </div>
         <input
-        className={styles.input}
+          className={styles.input}
           aria-label="playback time"
           type="range"
           value={!loading && audio ? songTime : 0}
@@ -128,7 +110,7 @@ export default function AudioWidget() {
   );
 }
 
-const formatTime = (songTime) => {
+const formatTime = (songTime : number) => {
   return (
     (Math.floor(Math.floor(songTime) / 60) > 60
       ? Math.floor(Math.floor(Math.floor(songTime) / 60) / 60) +

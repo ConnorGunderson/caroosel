@@ -3,8 +3,8 @@ import styles from '@/styles/card.module.css';
 import AudioWidget from './AudioWidget';
 import CardImage from './card-features/CardImage';
 import CardSettings from './card-features/CardSettings';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faRedo, faCloudUploadAlt, faUpload } from '@fortawesome/free-solid-svg-icons';
+import {ImLoop2 } from 'react-icons/im'
+import { FaBars} from 'react-icons/fa'
 import { useMedia } from '@/utils/media';
 
 interface CardProps {
@@ -28,37 +28,28 @@ export default function Card({ name, imageURL, audioURL } : CardProps) {
       <div className={styles.cardHeaderContainer}>
         <div className={styles.barContainer}>
           <div className={`${styles.faContainer} items-start`}>
-            <FontAwesomeIcon
+            <ImLoop2
               aria-label="loop"
+              size="1.25em"
               onClick={() => setLoop(!loop)}
-              className={`${styles.faLoop} ${
-                loop ? 'text-cloud-2 animate-pulse' : 'text-cloud-4'
+              className={`${styles.fa} ${
+                loop ? 'text-cloud-2 animate-pulse' : ""
               }`}
-              icon={faRedo}
             />
             <span
-              className={`${loop ? 'text-cloud-2 ' : 'text-cloud-4'} text-xs`}
+              className={`${loop ? 'text-cloud-2 ' : ""} text-xs`}
             >
               Loop
             </span>
           </div>
-          {/* <div className={`${styles.faContainer} items-center`}>
-            <FontAwesomeIcon
-              aria-label="settings"
-              onClick={() => saveCard()}
-              className={styles.fa}
-              icon={faCloudUploadAlt}
-            />
-            <span className={`text-cloud-4 text-xs`}>Save</span>
-          </div> */}
           <div className={`${styles.faContainer} items-end`}>
-            <FontAwesomeIcon
+            <FaBars
               aria-label="settings"
+              size="1.25em"
               onClick={() => setViewSettings(!viewSettings)}
-              className={styles.faSettings}
-              icon={faBars}
+              className={`${styles.fa}`}
             />
-            <span className={`text-cloud-4 text-xs`}>Settings</span>
+            <span className={`text-xs`}>Settings</span>
           </div>
         </div>
         <div onDragStart={(e) => e.preventDefault()}>

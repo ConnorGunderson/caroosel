@@ -30,10 +30,10 @@
 }
 
 .cardImage {
-  height: 200px;
-  left:-25px;
-  bottom:-25px;
-  width: 200px;
+  height: 170px;
+  left:-10px;
+  bottom:-10px;
+  width: 170px;
   @apply
     transition-opacity
     absolute
@@ -149,30 +149,16 @@
 }
 
 .faContainer {
-  flex:1;
   @apply 
-    flex flex-col justify-between select-none
+    flex flex-col
+    justify-between 
+    select-none
+    hover:text-cloud-2
+    text-cloud-4
 }
 
-.faLoop {
-  @apply 
-    text-2xl
-    self-start
-    hover:text-cloud-2 
-    transition-colors 
-    duration-300 
-    cursor-pointer
-    pb-1
-}
-
-.faSettings {
-  @apply 
-    text-2xl
-    hover:text-cloud-2 
-    transition-colors 
-    duration-300 
-    cursor-pointer
-    pb-1
+.faContainer span {
+  @apply pt-1
 }
 
 .active {

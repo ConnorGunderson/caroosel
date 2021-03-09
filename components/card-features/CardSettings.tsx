@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from '@/styles/card.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons';
+import { FaCloudUploadAlt } from 'react-icons/fa';
 import { useMedia } from '@/utils/media';
 
 export default function CardSettings() {
@@ -38,8 +37,7 @@ export default function CardSettings() {
             className={styles.audioFileLabel}
             htmlFor="audioFile"
           >
-            <FontAwesomeIcon
-              icon={faCloudUploadAlt}
+            <FaCloudUploadAlt
               className={`${
                 selectedFile ? 'text-cloud-2 animate-pulse' : 'text-white'
               } w-6 h-6 transition-all`}

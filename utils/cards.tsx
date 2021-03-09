@@ -1,9 +1,4 @@
-import { useAuth } from '@/lib/auth';
-import firebase from '@/lib/firebase';
-import 'firebase/storage';
 import { createContext, useContext, useEffect, useState } from 'react';
-
-const storage = firebase.storage().ref('audio');
 
 const CardContext = createContext(null);
 
@@ -19,29 +14,7 @@ export const useCards = () => {
 const useCardProvider = () => {
   const [cards, setCards] = useState(defaultMedia);
   const [loading, setLoading] = useState(true);
-  const [test, setTest] = useState(null);
-  const {user} = useAuth()
-  
   const cardLoading = loading;
-
-  const getCards = async () => {
-    setLoading(true);
-
-    let audio: any;
-    await storage
-      .child('/reverie.mp3')
-      .getDownloadURL()
-      .then((d) => {
-        audio = new Audio()
-        audio.src = d
-      })
-      .catch((e) => {
-        console.log(e.stack);
-      });
-
-    setLoading(false);
-    return audio;
-  };
 
   useEffect(() => {
     if (cards) {
@@ -51,8 +24,7 @@ const useCardProvider = () => {
 
   return {
     cards,
-    cardLoading,
-    getCards
+    cardLoading
   };
 };
 
