@@ -150,6 +150,7 @@
 
 .faContainer {
   @apply 
+    cursor-pointer
     flex flex-col
     justify-between 
     select-none
