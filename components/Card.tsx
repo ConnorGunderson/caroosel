@@ -27,12 +27,10 @@ export default function Card({ name, imageURL, audioURL } : CardProps) {
     <section className={`${styles.container}`} draggable="false">
       <div className={styles.cardHeaderContainer}>
         <div className={styles.barContainer}>
-          <div className={`${styles.faContainer} items-start`}>
+          <div className={`${styles.faContainer} items-start`} onClick={() => setLoop(!loop)}>
             <button aria-label="loop">
               <ImLoop2
-                
                 size="1.25em"
-                onClick={() => setLoop(!loop)}
                 className={`${styles.fa} ${
                   loop ? 'text-cloud-2 animate-pulse' : ""
                 }`}
@@ -44,11 +42,10 @@ export default function Card({ name, imageURL, audioURL } : CardProps) {
               Loop
             </span>
           </div>
-          <div className={`${styles.faContainer} items-end`}>
+          <div className={`${styles.faContainer} items-end`} onClick={() => setViewSettings(!viewSettings)}>
             <button aria-label="settings">
               <FaBars
                 size="1.25em"
-                onClick={() => setViewSettings(!viewSettings)}
                 className={`${styles.fa}`}
               />
             </button>
